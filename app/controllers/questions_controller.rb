@@ -23,8 +23,6 @@ class QuestionsController < ApplicationController
     end
   end
 
-
-
   private
 
   def question_params

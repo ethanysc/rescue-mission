@@ -22,3 +22,6 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+Special mentions:
+- Strong parameters | http://edgeguides.rubyonrails.org/action_controller_overview.html#strong-parameters
