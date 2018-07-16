@@ -1,0 +1,11 @@
+<h1>Questions: </h1>
+
+<% if @questions %>
+  <ul>
+    <% @questions.each do |question| %>
+      <li>
+        <%= question.title %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>
