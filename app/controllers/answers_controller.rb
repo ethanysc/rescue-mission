@@ -7,11 +7,10 @@ class AnswersController < ApplicationController
 
   def create
     @question = Question.find(params[:question_id])
-    @answer = Answer.new(answer_params)
-    @answer.question = @question
+    @answer = @question.answers.new(answer_params)
 
     if @answer.save
-      flash[:notice] = "Answer submitted successfully."
+      flash[:success] = "Answer submitted successfully."
       redirect_to new_question_answer_path(@question)
     else
       flash[:alert] = "Failed to save answer."
@@ -23,6 +22,8 @@ class AnswersController < ApplicationController
   private
 
   def answer_params
-    params.require(:answer).permit(:description)
+    params
+      .require(:answer)
+      .permit(:description)
   end
 end

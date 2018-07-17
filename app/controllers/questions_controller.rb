@@ -12,11 +12,10 @@ class QuestionsController < ApplicationController
   end
 
   def create
-
     @question = Question.new(question_params)
 
     if @question.save
-      redirect_to @question, notice: "You succesfully submitted a Question you Jabroni!"
+      redirect_to :controller => 'answer', :action => 'new', notice: "You succesfully submitted a Question you Jabroni!"
     else
       @errors = @question.errors.full_messages.join(', ')
       render action: 'new'
@@ -26,6 +25,8 @@ class QuestionsController < ApplicationController
   private
 
   def question_params
-   params.require(:question).permit(:title, :description)
- end
+    params
+      .require(:question)
+      .permit(:title, :description)
+  end
 end
