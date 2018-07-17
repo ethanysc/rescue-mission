@@ -24,3 +24,5 @@
 <% end %>
 
 <button class="button"> <%= link_to "Edit your question!", edit_question_path(@question) %> </button>
+
+<%= link_to "Delete this question because it's lame!", question_path(@question), method: :delete, data: { confirm: "Are you sure?" } %>
