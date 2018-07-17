@@ -20,12 +20,16 @@ class QuestionsController < ApplicationController
   end
 
   def edit
-    @question = Question.find(params[:question_id])
+
+    @question = Question.find(params[:id])
 
   end
 
   def update
-    @question = Question.find(pararms[:question_id])
+
+    @question = Question.find(params[:id])
+    title = @question.title
+    description = @question.description
     @question.update(question_params)
 
     @errors = @question.errors
@@ -34,6 +38,8 @@ class QuestionsController < ApplicationController
       redirect_to new_question_answer_path(@question), notice: "Question edited!"
     else
       @errors_messages = @question.errors.full_messages.join(', ')
+      @question.title = title
+      @question.description = description
       render action: 'edit'
     end
   end
