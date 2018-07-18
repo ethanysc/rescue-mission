@@ -6,8 +6,19 @@
 
 <div class="">Answers:
   <ol>
+    <% if @best_answer %>
+      Best Answer!
+      <li>
+        <%= markdown(@best_answer.description) %>
+      </li>
+    <% end %>
     <% @answers.each do |answer| %>
-      <li><%= markdown(answer.description) %></li>
+      <% if !answer.best_answer %>
+      <li>
+        <%= markdown(answer.description) %>
+        <%= link_to "Select as Best Answer", answer_path(answer), method: :patch %>
+      </li>
+      <% end %>
     <% end %>
   </ol>
 </div>
