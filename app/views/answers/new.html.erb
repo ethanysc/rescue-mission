@@ -7,7 +7,7 @@
 <div class="">Answers:
   <ol>
     <% @answers.each do |answer| %>
-      <li><%= answer.description %></li>
+      <li><%= markdown(answer.description) %></li>
     <% end %>
   </ol>
 </div>
