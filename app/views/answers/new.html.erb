@@ -5,11 +5,16 @@
 </div></br>
 
 <div class="">Answers:
-  <ol>
+  <%= form_for [@question, @answer] do |f| %>
     <% @answers.each do |answer| %>
-      <li><%= markdown(answer.description) %></li>
+      <div>
+        <%= f.radio_button :best_answer, true %>
+        <%= f.label :best_answer, markdown(answer.description) %>
+        
+        <%= f.submit "Submit best answer" %>
+      </div>
     <% end %>
-  </ol>
+  <% end %>
 </div>
 
 <%= form_for [@question, @answer] do |f| %>

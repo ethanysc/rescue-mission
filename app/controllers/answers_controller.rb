@@ -8,7 +8,7 @@ class AnswersController < ApplicationController
   def create
     @question = Question.find(params[:question_id])
     @answer = @question.answers.new(answer_params)
-
+binding.pry
     if @answer.save
       flash[:success] = "Answer submitted successfully."
       redirect_to new_question_answer_path(@question)
@@ -17,6 +17,10 @@ class AnswersController < ApplicationController
       @answers = @question.answers.order(created_at: :desc)
       render :new
     end
+  end
+
+  def update
+    binding.pry
   end
 
   private
