@@ -5,16 +5,22 @@
 </div></br>
 
 <div class="">Answers:
-  <%= form_for [@question, @answer] do |f| %>
-    <% @answers.each do |answer| %>
-      <div>
-        <%= f.radio_button :best_answer, true %>
-        <%= f.label :best_answer, markdown(answer.description) %>
-        
-        <%= f.submit "Submit best answer" %>
-      </div>
+  <ol>
+    <% if @best_answer %>
+      Best Answer!
+      <li>
+        <%= markdown(@best_answer.description) %>
+      </li>
     <% end %>
-  <% end %>
+    <% @answers.each do |answer| %>
+      <% if !answer.best_answer %>
+      <li>
+        <%= markdown(answer.description) %>
+        <%= link_to "Select as Best Answer", answer_path(answer), method: :patch %>
+      </li>
+      <% end %>
+    <% end %>
+  </ol>
 </div>
 
 <%= form_for [@question, @answer] do |f| %>
